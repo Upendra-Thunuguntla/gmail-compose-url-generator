@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gmail Compose URL Generator">
+    <meta name="keywords" content="Gmail, Compose, URL, Generator">
+    <title>Gmail Compose URL Generator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YFCWMG4Z0C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YFCWMG4Z0C');
+</script>
+<body>
+    <div class="container py-5">
+        <h1 class="mb-4">Gmail Compose URL Generator</h1>
+        <form id="composeForm">
+            <div class="form-group">
+                <label for="to">To</label>
+                <input type="email" class="form-control" id="to" multiple required>
+            </div>
+            <div class="form-group">
+                <label for="cc">CC</label>
+                <input type="email" class="form-control" id="cc" multiple>
+            </div>
+            <div class="form-group">
+                <label for="bcc">BCC</label>
+                <input type="email" class="form-control" id="bcc" multiple>
+            </div>
+            <div class="form-group">
+                <label for="su">Subject</label>
+                <input type="text" class="form-control" id="su" required>
+            </div>
+            <div class="form-group">
+                <label for="body">Body</label>
+                <textarea class="form-control" id="body" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Generate URL</button>
+        </form>
+        <div class="mt-4" id="result"></div>
+    </div>
+
+    <footer style="position: absolute; bottom: 5; width: 100%; text-align: center;"> 
+      Designed by 
+      <a href="mailto:muralidhar.thunuguntla@gmail.com">Upendra Thunuguntla</a> | 
+      <a href="https://www.linkedin.com/in/upendra-thunuguntla/">LinkedIn</a> |  
+      <a href="https://github.com/Upendra-Thunuguntla/gmail-compose-url-generator">Github Repo</a>
+  </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+        $('#composeForm').on('submit', function(e) {
+            e.preventDefault();
+            var to = $('#to').val();
+            var cc = $('#cc').val();
+            var bcc = $('#bcc').val();
+            var su = $('#su').val();
+            var body = $('#body').val();
+            var url = `https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=${to}&cc=${cc}&bcc=${bcc}&su=${su}&body=${body}`;
+            $('#result').html(`<p>Your URL to Bookmark is: <a href="${url}" target="_blank">${url}</a></p><button class="btn btn-secondary" onclick="copyToClipboard('${url}')">Copy to Clipboard</button>`);
+        });
+
+        function copyToClipboard(text) {
+            var dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            alert("URL copied to clipboard!");
+        }
+    </script>
+</body>
+</html>
