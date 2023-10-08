@@ -1,3 +1,5 @@
+[![Deploy static content to Pages](https://github.com/Upendra-Thunuguntla/gmail-compose-url-generator/actions/workflows/static.yml/badge.svg)](https://github.com/Upendra-Thunuguntla/gmail-compose-url-generator/actions/workflows/static.yml)
+
 # Gmail Compose URL Generator
 
 This is a simple HTML page that generates a Gmail compose URL based on user input. It allows users to enter recipients, subject, and body for an email and generates a URL that can be used to pre-fill the compose window in Gmail.
