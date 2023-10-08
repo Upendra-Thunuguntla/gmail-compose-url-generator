@@ -17,7 +17,6 @@
         }
     </style>
 </head>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YFCWMG4Z0C"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -26,8 +25,24 @@
   gtag('config', 'G-YFCWMG4Z0C');
 </script>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Gmail Compose URL Generator</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link " href="index.html" role="button">Home 🏠</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link " href="README.html" role="button" >Help 💡</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 <div class="container py-5">
-    <h1 class="mb-4">Gmail Compose URL Generator</h1>
+    <h2 class="mb-4">Gmail Compose URL Generator</h2>
     <form id="composeForm">
         <div class="form-group">
             <label for="to">To *</label>
@@ -61,7 +76,7 @@
 
     <footer style="position: absolute; bottom: 5; width: 100%; text-align: center;"> 
       Designed by 
-      <a href="mailto:muralidhar.thunuguntla@gmail.com">Upendra Thunuguntla</a> | 
+      <a href="mailto:muralidhar.thunuguntla@gmail.com">Upendra Thunuguntla ❤</a> | 
       <a href="https://www.linkedin.com/in/upendra-thunuguntla/" target="_blank">LinkedIn</a> |  
       <a href="https://github.com/Upendra-Thunuguntla/gmail-compose-url-generator" target="_blank">Github Repo</a>
   </footer>
@@ -78,11 +93,15 @@
             var body = $('#body').val().replace(/\r?\n/g, '%0D%0A');
             console.log(body);
             var url = `https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=${to}&cc=${cc}&bcc=${bcc}&su=${su}&body=${body}`;
+            gtag('event', 'url_generated', {
+                'su' : su
+            });
             $('#result').html(`<p>Open the below link and Bookmark the opened compose email page to use in future : </br><a href="${url}" target="_blank">${url}</a></p><button class="btn btn-secondary" onclick="copyToClipboard('${url}')">Copy to Clipboard</button>`);
             note.hidden=false;
         });
 
         function copyToClipboard(text) {
+            gtag('event', 'copy_to_clipboard', {});
             var dummy = document.createElement("textarea");
             document.body.appendChild(dummy);
             dummy.value = text;
@@ -93,6 +112,7 @@
         }
 
         function loadTestVals() {
+            gtag('event', 'load_test_vals', {});
             // Get form elements
             var toField = document.getElementById('to');
             var ccField = document.getElementById('cc');
